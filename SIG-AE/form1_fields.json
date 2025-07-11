@@ -1,0 +1,60 @@
+[
+  {
+    "id": "data",
+    "type": "date",
+    "title": "Data do Lançamento",
+    "properties": {
+      "description": "Selecione a data do consumo.",
+      "required": true
+    }
+  },
+  {
+    "id": "unidadeEscolar",
+    "type": "choice",
+    "title": "Unidade Escolar",
+    "properties": {
+      "description": "Selecione a sua unidade escolar.",
+      "required": true,
+      "choices": [
+        { "label": "UE-01 - CEI da UnB" },
+        { "label": "UE-02 - CEM 01 do Cruzeiro" },
+        { "label": "UE-03 - EC 05 do Cruzeiro" },
+        { "label": "UE-04 - CEF 01 do Cruzeiro" },
+        { "label": "UE-05 - EJA Interpares" }
+      ]
+    }
+  },
+  {
+    "id": "tipoRefeicao",
+    "type": "choice",
+    "title": "Tipo de Refeição",
+    "properties": {
+      "required": true,
+      "choices": [
+        { "label": "Café da Manhã" },
+        { "label": "Lanche" },
+        { "label": "Almoço" },
+        { "label": "Jantar" }
+      ]
+    }
+  },
+  {
+    "id": "ingredientes",
+    "type": "text",
+    "title": "Ingredientes Utilizados e Quantidades",
+    "properties": {
+      "description": "Liste cada ingrediente e a quantidade consumida. Ex: Arroz Parboilizado, 5.0 Kg; Feijão Preto, 4.5 Kg.",
+      "required": true,
+      "long": true
+    }
+  },
+  {
+    "id": "alunosAtendidos",
+    "type": "number",
+    "title": "Total de Alunos Atendidos",
+    "properties": {
+      "description": "Informe o número total de alunos que receberam esta refeição.",
+      "required": true
+    }
+  }
+]

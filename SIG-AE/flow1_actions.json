@@ -1,0 +1,49 @@
+{
+  "connectionReferences": {
+    "shared_microsoftforms": {
+      "connectionName": "MicrosoftForms-Connection",
+      "id": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms"
+    },
+    "shared_excelonlinebusiness": {
+      "connectionName": "ExcelOnlineBusiness-Connection",
+      "id": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness"
+    }
+  },
+  "actions": [
+    {
+      "id": "Get_response_details",
+      "type": "OpenApiConnection",
+      "inputs": {
+        "host": {
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_microsoftforms",
+          "connectionName": "shared_microsoftforms"
+        },
+        "parameters": {
+          "formId": "@{triggerBody()?['resourceId']}",
+          "responseId": "@{triggerBody()?['responseId']}"
+        }
+      }
+    },
+    {
+      "id": "Add_a_row_into_a_table",
+      "type": "OpenApiConnection",
+      "inputs": {
+        "host": {
+          "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness",
+          "connectionName": "shared_excelonlinebusiness"
+        },
+        "parameters": {
+          "location": "SharePoint",
+          "drive": "https://[tenant].sharepoint.com/sites/AlimentacaoEscolar-CREPP",
+          "file": "/Documentos Compartilhados/CONTROLE_MESTRE_2025/PlanilhaMestra_AlimentacaoEscolar.xlsx",
+          "table": "DailyConsumptionLog",
+          "item/DataConsumo": "@{outputs('Get_response_details')?['body/data']}",
+          "item/UnidadeEscolarID": "@{outputs('Get_response_details')?['body/unidadeEscolar']}",
+          "item/TipoRefeicao": "@{outputs('Get_response_details')?['body/tipoRefeicao']}",
+          "item/IngredientesRaw": "@{outputs('Get_response_details')?['body/ingredientes']}",
+          "item/AlunosAtendidos": "@{outputs('Get_response_details')?['body/alunosAtendidos']}"
+        }
+      }
+    }
+  ]
+}
